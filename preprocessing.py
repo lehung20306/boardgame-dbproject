@@ -47,9 +47,7 @@ df_game_mechanic = df_mech_merge[['BGGId', 'mechanic_id']].rename(columns={'BGGI
 df_game_mechanic.to_csv(NEW_DIR + "game_mechanic.csv", index=False)
 print("Processed: game_mechanic.csv")
 
-# ==========================================
 # 3. PROCESS THEMES & GAME_THEME TABLES
-# ==========================================
 df_themes = pd.read_csv(ORIGIN_DIR + "themes.csv")
 theme_names = df_themes.columns[1:]
 
@@ -70,9 +68,7 @@ df_game_theme = df_themes_merge[['BGGId', 'theme_id']].rename(columns={'BGGId': 
 df_game_theme.to_csv(NEW_DIR + "game_theme.csv", index=False)
 print("Processed: game_theme.csv")
 
-# ==========================================
 # 4. PROCESS USERS & REVIEWS TABLES
-# ==========================================
 df_ratings = pd.read_csv(ORIGIN_DIR + "user_ratings.csv")
 
 # Extract unique users from the 'Username' column to create the users table
