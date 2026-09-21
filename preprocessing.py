@@ -1,8 +1,8 @@
 import pandas as pd
 
 # Define input and output directory paths
-ORIGIN_DIR = "D:/Hung Le/Subject/Database lab/Project/origin_data/"
-NEW_DIR = "D:/Hung Le/Subject/Database lab/Project/new_data/"
+ORIGIN_DIR = "./origin_data/"
+NEW_DIR = "./new_data/"
 
 # 1. PROCESS GAMES TABLE
 df_games = pd.read_csv(ORIGIN_DIR + "games.csv")
