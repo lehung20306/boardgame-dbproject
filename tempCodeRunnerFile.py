@@ -1,0 +1,1 @@
+df_games_cleaned.loc[df_games_cleaned['max_players'] < df_games_cleaned['min_p
