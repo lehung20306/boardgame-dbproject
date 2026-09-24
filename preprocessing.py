@@ -32,15 +32,18 @@ df_games_cleaned = df_games_cleaned.rename(columns={
     'ImagePath': 'image_url'
 })
 
-
 # Data Cleaning: Fix logical errors and handle missing values to match SQL constraints
 df_games_cleaned.loc[df_games_cleaned['min_players'] < 1, 'min_players'] = 1
 df_games_cleaned.loc[df_games_cleaned['max_players'] < df_games_cleaned['min_players'], 'max_players'] = df_games_cleaned['min_players']
 
-df_games_cleaned.loc[df_games_cleaned['play_time'] == 0, 'play_time'] = None
-df_games_cleaned.loc[df_games_cleaned['min_age'] == 0, 'min_age'] = None
+df_games_cleaned.loc[df_games_cleaned['play_time'] == 0, 'play_time'] = pd.NA
+df_games_cleaned.loc[df_games_cleaned['min_age'] == 0, 'min_age'] = pd.NA
 
-df_games_cleaned.to_csv(NEW_DIR + "games_cleaned.csv", index=False)
+int_cols = ['game_id', 'year_published', 'min_players', 'max_players', 'play_time', 'min_age', 'total_votes']
+for col in int_cols:
+    df_games_cleaned[col] = pd.to_numeric(df_games_cleaned[col], errors='coerce').astype('Int64')
+
+df_games_cleaned.to_csv('new_data/games_cleaned.csv', index=False)
 print("Processed: games_cleaned.csv")
 
 # 2. PROCESS MECHANICS & GAME_MECHANIC TABLES
